@@ -14,14 +14,13 @@ import (
 // Generate the prompt to be translated
 func GeneratePrompt(input string) string {
 	erro := godotenv.Load(".env")
-
 	if erro != nil {
 		fmt.Println("Error loading .env file:", erro)
 	}
+
 	idiomaSaida := "português brasileiro"
 
 	ctx := context.Background()
-
 	client, err := genai.NewClient(ctx, option.WithAPIKey(os.Getenv("GEMINI_KEY")))
 	if err != nil {
 		log.Fatal(err)

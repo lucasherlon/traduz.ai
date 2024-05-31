@@ -15,7 +15,10 @@ import (
 func main() {
 	const command string = "!traduz"
 
-	godotenv.Load(".env")
+	err := godotenv.Load(".env")
+	if err != nil {
+		return
+	}
 	token := os.Getenv("BOT_KEY")
 
 	session, err := discordgo.New("Bot " + token)
@@ -54,7 +57,7 @@ func main() {
 		if err != nil {
 		}
 	}(session)
-	
+
 	fmt.Println("Traduz.ai is running")
 
 	sc := make(chan os.Signal, 1)
